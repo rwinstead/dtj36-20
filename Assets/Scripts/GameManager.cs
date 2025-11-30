@@ -7,18 +7,23 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("Scene Names")]
-    [SerializeField] private string introSceneName = "Intro";
+    [SerializeField] private string titleSceneName   = "Title";
+    [SerializeField] private string introSceneName   = "Intro";
     [SerializeField] private string gameplaySceneName = "Gameplay";
-    [SerializeField] private string endingSceneName = "Ending";
+    [SerializeField] private string endingSceneName   = "Ending";
 
     [Header("Intro Timing")]
-    [SerializeField] private float introDuration = 25f;   // number of seconds before auto-skip
+    [SerializeField] private float introDuration = 25f;   // seconds before auto-skip
     private float introTimer = 0f;
 
     [Header("Intro Settings")]
     public bool introSkippable = true;
-    public KeyCode skipKey = KeyCode.Tab;
     private bool introFinished = false;
+
+    [Header("Gameplay Timing")]
+    [SerializeField] private float gameplayDuration = 10f;   // seconds to survive to win
+    private float gameplayTimer = 0f;
+    private bool gameplayFinished = false;
 
     void Awake()
     {
@@ -26,6 +31,11 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (SceneManager.GetActiveScene().name != titleSceneName)
+            {
+                SceneManager.LoadScene(titleSceneName);
+            }
         }
         else
         {
@@ -36,24 +46,40 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!introFinished)
+        var currentScene = SceneManager.GetActiveScene().name;
+
+        // INTRO LOGIC
+        if (!introFinished && currentScene == introSceneName)
         {
             HandleIntroSkip();
             HandleIntroTimer();
         }
+
+        // GAMEPLAY LOGIC
+        if (!gameplayFinished && currentScene == gameplaySceneName)
+        {
+            HandleGameplayTimer();
+        }
     }
 
-    // --------------------------------------------------------------------
-    // INTRO LOGIC
-    // --------------------------------------------------------------------
+    // -------------------- TITLE FLOW --------------------
+
+    public void LoadIntroScene()
+    {
+        introFinished = false;
+        introTimer = 0f;
+
+        SceneManager.LoadScene(introSceneName);
+    }
+
+    // -------------------- INTRO LOGIC --------------------
+
     void HandleIntroSkip()
     {
         if (!introSkippable || introFinished) return;
+        if (SceneManager.GetActiveScene().name != introSceneName) return;
 
-        if (SceneManager.GetActiveScene().name != introSceneName)
-            return;
-
-        if (Input.GetKeyDown(skipKey))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StartGame();
         }
@@ -62,8 +88,6 @@ public class GameManager : MonoBehaviour
     void HandleIntroTimer()
     {
         introTimer += Time.deltaTime;
-
-        Debug.Log(introTimer);
 
         if (introTimer > introDuration)
         {
@@ -82,16 +106,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(gameplaySceneName);
     }
 
-    // --------------------------------------------------------------------
-    // GAMEPLAY FLOW
-    // --------------------------------------------------------------------
-    public void PlayerDied()
+    // -------------------- GAMEPLAY FLOW --------------------
+    void HandleGameplayTimer()
     {
-        SceneManager.LoadScene(gameplaySceneName);
+        gameplayTimer += Time.deltaTime;
+
+        // Debug.Log($"Gameplay timer: {gameplayTimer}");
+
+        if (gameplayTimer >= gameplayDuration)
+        {
+            GameplaySucceeded();
+        }
     }
 
-    public void PlayerSucceeded()
+    private void GameplaySucceeded()
     {
+        gameplayFinished = true;
+
+        // Optional: small delay, or screen flash here if you want
         SceneManager.LoadScene(endingSceneName);
     }
 

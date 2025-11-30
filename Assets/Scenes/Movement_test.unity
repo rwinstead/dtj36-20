@@ -635,6 +635,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431642588}
   m_CullTransparentMesh: 1
+--- !u!1 &445603239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445603240}
+  - component: {fileID: 445603241}
+  m_Layer: 0
+  m_Name: Blackhole Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445603240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445603239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.49, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445603241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445603239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71d57248b7c5fb4199620a9060ac74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackHolePrefab: {fileID: 3106531381950174057, guid: e0f00b4a3392cc6429126d13f634386e, type: 3}
+  minY: -4.2
+  maxY: -2.5
+  spawnInterval: 2
+  minSpeed: 2
+  maxSpeed: 4
 --- !u!1 &455418152
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &744511243
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1636,7 +1686,7 @@ MonoBehaviour:
   minX: -8.25
   maxX: 9
   minSpacing: 0.4
-  spawnRate: 0.35
+  spawnRate: 1
   spawnDuration: 20
 --- !u!4 &1938278362
 Transform:
@@ -2084,7 +2134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8127749724402958554, guid: 8c398e834320c43afaf76311096dabba, type: 3}
       propertyPath: jumpForce
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8407818017492020210, guid: 8c398e834320c43afaf76311096dabba, type: 3}
       propertyPath: m_Layer
@@ -2107,3 +2157,4 @@ SceneRoots:
   - {fileID: 1074268684}
   - {fileID: 615877920}
   - {fileID: 744511246}
+  - {fileID: 445603240}

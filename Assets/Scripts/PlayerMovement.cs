@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject staticSprite;
     [SerializeField] GameObject runningSprite;
     public static PlayerMovement Instance;
+    BoxCollider2D playerCollider;
     bool isDead = false;
 
     void Awake()
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -35,17 +37,21 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocityY);
 
         // --- Check if grounded (tiny raycast under feet) ---
-        isGrounded = Physics2D.Raycast(groundContact.position, Vector2.down, .15f, groundLayer);
+        isGrounded = Physics2D.Raycast(groundContact.position, Vector2.down, .3f, groundLayer);
 
         if(move != 0 || !isGrounded)
         {
             runningSprite.SetActive(true);
             staticSprite.SetActive(false);
+            playerCollider.offset = new Vector2(.3f, -.5f);
+            playerCollider.size = new Vector2(5.9f, 4.1f);
         }
         else
         {
             runningSprite.SetActive(false);
             staticSprite.SetActive(true);
+            playerCollider.offset = new Vector2(0f, -0.16f);
+            playerCollider.size = new Vector2(4.5f, 5.6f);
         }
 
         // --- Jump (W, Up Arrow) ---

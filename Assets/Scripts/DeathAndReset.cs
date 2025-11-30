@@ -23,6 +23,7 @@ public class DeathAndReset : MonoBehaviour
     {
         isDead = true;
         deathUI.SetActive(true);
+        MusicManager.Instance.StopMusic();
         Time.timeScale = 0f;
     }
 
@@ -37,6 +38,8 @@ public class DeathAndReset : MonoBehaviour
     public void ResetGame()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+
+        // Use the GameManager instead of manual scene reload
+        GameManager.Instance.RestartGameplay();
     }
 }

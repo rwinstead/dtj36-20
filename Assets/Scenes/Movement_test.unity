@@ -346,10 +346,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingBar: {fileID: 701061459}
-  loadDuration: 3
+  loadDuration: 1.3
   strobeImage: {fileID: 209999560}
   minStrobeInterval: 0.1
   maxStrobeInterval: 0.15
+  barSpawner: {fileID: 1938278361}
 --- !u!1 &284342715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1342194837
 RectTransform:
   m_ObjectHideFlags: 0

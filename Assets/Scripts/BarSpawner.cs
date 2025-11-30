@@ -15,11 +15,13 @@ public class BarSpawner : MonoBehaviour
     public float spawnRate = 2f;
     public float spawnDuration = 20f;
 
-    private bool spawning = true;
+    private bool spawning = false;
     private List<GameObject> activeBars = new List<GameObject>();
 
-    void Start()
+    public void BeginSpawning()
     {
+        if (spawning) return;
+        spawning = true;
         StartCoroutine(SpawnBars());
     }
 

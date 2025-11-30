@@ -13,6 +13,9 @@ public class LoadingEffects : MonoBehaviour
     public float minStrobeInterval = 0.03f;
     public float maxStrobeInterval = 0.10f;
 
+    [Header("Gameplay Start")]
+    public BarSpawner barSpawner;
+
     private Coroutine fillRoutine;
     private Coroutine strobeRoutine;
 
@@ -44,6 +47,16 @@ public class LoadingEffects : MonoBehaviour
         // Optionally disable strobe completely
         // strobeImage.enabled = false;
 
+        // 🔥 START GAMEPLAY HERE
+        if (barSpawner != null)
+        {
+            barSpawner.BeginSpawning();
+        }
+        else
+        {
+            Debug.LogWarning("LoadingEffects: barSpawner is not assigned.");
+        }
+        
         // End here — no loop
         gameObject.SetActive(false);
     }

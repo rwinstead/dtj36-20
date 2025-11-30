@@ -5,6 +5,7 @@ public class DeathAndReset : MonoBehaviour
     [SerializeField] GameObject deathUI;
 
     public static DeathAndReset Instance;
+    bool isDead = false;
 
     private void Awake()
     {
@@ -20,13 +21,14 @@ public class DeathAndReset : MonoBehaviour
 
     public void TriggerDeath()
     {
+        isDead = true;
         deathUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isDead)
         {
             ResetGame();
         }

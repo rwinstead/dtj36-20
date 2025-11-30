@@ -14,7 +14,7 @@ public class BarSpawner : MonoBehaviour
     [HideInInspector] public float spawnRate = 2f;
     float spawnDuration = 99999f;
 
-    private bool spawning = true;
+    private bool spawning = false;
     private List<GameObject> activeBars = new List<GameObject>();
     public static BarSpawner Instance;
 
@@ -30,8 +30,10 @@ public class BarSpawner : MonoBehaviour
         }
     }
 
-    void Start()
+    public void BeginSpawning()
     {
+        if (spawning) return;
+        spawning = true;
         StartCoroutine(SpawnBars());
     }
 

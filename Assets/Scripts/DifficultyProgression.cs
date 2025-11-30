@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DifficultyProgression : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class DifficultyProgression : MonoBehaviour
     [Header("Phase 2 Settings")]
     [SerializeField] float phase2DifficultyTimeStep = 5f;
     [SerializeField] float phase2SpawnRateIncrease = .25f;
+
+    [Header("Phase Transition")]
+    [SerializeField] float timeToTriggerPhase2 = 58f;
+
+    [SerializeField] GameObject blackholeSpawner;
 
     public enum GamePhase
     {
@@ -26,6 +32,31 @@ public class DifficultyProgression : MonoBehaviour
     void Start()
     {
         StartPhase(currentPhase);
+        StartCoroutine(Phase2Timer()); // Start countdown immediately
+        StartCoroutine(EndScreenTimer());
+    }
+
+    /// <summary>
+    /// Automatically move to Phase2 after X seconds
+    /// </summary>
+    private IEnumerator Phase2Timer()
+    {
+        yield return new WaitForSeconds(timeToTriggerPhase2);
+
+        // Only switch if we haven't hit Phase2 or End already
+        if (currentPhase != GamePhase.Phase2 &&
+            currentPhase != GamePhase.End)
+        {
+            SetPhase(GamePhase.Phase2);
+        }
+    }
+
+    private IEnumerator EndScreenTimer()
+    {
+        yield return new WaitForSeconds(118f);
+
+        SetPhase(GamePhase.End);
+        SceneManager.LoadSceneAsync("Ending");
     }
 
     /// <summary>
@@ -69,9 +100,15 @@ public class DifficultyProgression : MonoBehaviour
 
         while (currentPhase == GamePhase.Phase1)
         {
-            yield return new WaitForSeconds(phase1DifficultyTimeStep);
-            BarSpawner.Instance.spawnRate = BarSpawner.Instance.spawnRate + phase1SpawnRateIncrease;
-
+            if( BarSpawner.Instance.spawnRate> 0.375f)
+            {
+                yield return new WaitForSeconds(phase1DifficultyTimeStep);
+                BarSpawner.Instance.spawnRate = BarSpawner.Instance.spawnRate * 0.85f; // Increase difficulty by reducing spawn rate
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 
@@ -81,11 +118,19 @@ public class DifficultyProgression : MonoBehaviour
     private IEnumerator Phase2Routine()
     {
         Debug.Log("Phase 2 started");
+        blackholeSpawner.SetActive(true);
 
         while (currentPhase == GamePhase.Phase2)
         {
-            yield return new WaitForSeconds(phase2DifficultyTimeStep);
-            BarSpawner.Instance.spawnRate = BarSpawner.Instance.spawnRate + phase2SpawnRateIncrease;
+            if( BarSpawner.Instance.spawnRate> 0.3f)
+            {
+                yield return new WaitForSeconds(phase2DifficultyTimeStep);
+                BarSpawner.Instance.spawnRate = BarSpawner.Instance.spawnRate * 0.95f;
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 }

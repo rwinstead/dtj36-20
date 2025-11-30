@@ -285,9 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phase1DifficultyTimeStep: 5
-  phase1SpawnRateIncrease: 0.25
+  phase1SpawnRateIncrease: 1
   phase2DifficultyTimeStep: 5
-  phase2SpawnRateIncrease: 0.25
+  phase2SpawnRateIncrease: 0.5
+  timeToTriggerPhase2: 58
+  blackholeSpawner: {fileID: 445603239}
   currentPhase: 1
 --- !u!4 &203938009
 Transform:
@@ -1135,7 +1137,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -1736,7 +1738,7 @@ MonoBehaviour:
   minX: -8.25
   maxX: 9
   minSpacing: 0.4
-  spawnRate: 1
+  spawnRate: 0.6
 --- !u!4 &1938278362
 Transform:
   m_ObjectHideFlags: 0

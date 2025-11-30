@@ -11,7 +11,7 @@ public class BarSpawner : MonoBehaviour
     public float maxX = 5f;
     public float minSpacing = 2f; // minimum horizontal spacing between bars
 
-    [HideInInspector] public float spawnRate = 2f;
+    public float spawnRate = 1.7f;
     float spawnDuration = 99999f;
 
     private bool spawning = false;

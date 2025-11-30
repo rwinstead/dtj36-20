@@ -158,7 +158,7 @@ private void UpdateSecondBarCollider()
     private void KillPlayer(GameObject player)
     {
         Debug.Log("Player ded");
-        // Implement your player death logic here
-        // e.g., Destroy(player);
+        PlayerMovement.Instance.FlipSpriteOnDeath();
+        DeathAndReset.Instance.TriggerDeath();
     }
 }

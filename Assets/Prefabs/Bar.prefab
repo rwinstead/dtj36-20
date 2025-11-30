@@ -83,7 +83,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.9, y: 0.62}
+  m_Size: {x: 0.25, y: 0.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,9 +107,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6bb8bf4b9943642cb9858213ed080ac7, type: 3}
   minWidth: 1
   maxWidth: 10
-  slowSpeed: 0.25
-  fastSpeed: 45
-  slowPhaseDuration: 0.25
+  slowSpeed: 0.6
+  fastSpeed: 40
+  slowPhaseDuration: 0.65
   secondBar: {fileID: 9020799924703477494}
   colorChangeInterval: 0.1
   playerLayer:
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.35, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -243,7 +243,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 1}
     oldSize: {x: 2.83, y: 2.83}
-    newSize: {x: 1, y: 0.5}
+    newSize: {x: 0.35, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0

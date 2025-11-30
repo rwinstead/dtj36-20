@@ -11,12 +11,24 @@ public class BarSpawner : MonoBehaviour
     public float maxX = 5f;
     public float minSpacing = 2f; // minimum horizontal spacing between bars
 
-    [Header("Timing")]
-    public float spawnRate = 2f;
-    public float spawnDuration = 20f;
+    [HideInInspector] public float spawnRate = 2f;
+    float spawnDuration = 99999f;
 
     private bool spawning = true;
     private List<GameObject> activeBars = new List<GameObject>();
+    public static BarSpawner Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

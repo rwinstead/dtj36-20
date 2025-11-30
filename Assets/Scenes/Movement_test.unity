@@ -255,6 +255,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109636041}
   m_CullTransparentMesh: 1
+--- !u!1 &203938007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 203938009}
+  - component: {fileID: 203938008}
+  m_Layer: 0
+  m_Name: Difficulty Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &203938008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203938007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17880d98963b53140a4258d3c5e50682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phase1DifficultyTimeStep: 5
+  phase1SpawnRateIncrease: 0.25
+  phase2DifficultyTimeStep: 5
+  phase2SpawnRateIncrease: 0.25
+  currentPhase: 1
+--- !u!4 &203938009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203938007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &209999558
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &445603240
 Transform:
   m_ObjectHideFlags: 0
@@ -1687,7 +1736,6 @@ MonoBehaviour:
   maxX: 9
   minSpacing: 0.4
   spawnRate: 1
-  spawnDuration: 20
 --- !u!4 &1938278362
 Transform:
   m_ObjectHideFlags: 0
@@ -2158,3 +2206,4 @@ SceneRoots:
   - {fileID: 615877920}
   - {fileID: 744511246}
   - {fileID: 445603240}
+  - {fileID: 203938009}

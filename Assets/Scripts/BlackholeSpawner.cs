@@ -16,6 +16,19 @@ public class BlackholeSpawner : MonoBehaviour
     private Camera mainCamera;
     private float halfWidth;
     private float halfHeight;
+    public static BlackholeSpawner Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

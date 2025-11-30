@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         gameplayFinished = true;
 
         // Optional: small delay, or screen flash here if you want
-        SceneManager.LoadScene(endingSceneName);
+        //SceneManager.LoadScene(endingSceneName);
     }
 
     public void RestartGameplay()
